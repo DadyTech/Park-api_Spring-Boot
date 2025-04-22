@@ -9,12 +9,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class ParkApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ParkApiApplication.class, args);
-		/*SpringApplicationBuilder builder = new SpringApplicationBuilder(ParkApiApplication.class);
+		//SpringApplication.run(ParkApiApplication.class, args);
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(ParkApiApplication.class);
 		builder.bannerMode(Banner.Mode.OFF);
 		builder.run(args);
 
-		 */
+		 
 	}
 
 }
