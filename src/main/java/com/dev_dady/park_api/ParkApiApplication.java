@@ -14,7 +14,7 @@ public class ParkApiApplication {
 		builder.bannerMode(Banner.Mode.OFF);
 		builder.run(args);
 
-		 
+
 	}
 
 }
