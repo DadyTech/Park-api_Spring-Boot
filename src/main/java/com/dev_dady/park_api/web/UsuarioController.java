@@ -3,6 +3,7 @@ package com.dev_dady.park_api.web;
 import com.dev_dady.park_api.model.entity.Usuario;
 import com.dev_dady.park_api.service.UsuarioService;
 import com.dev_dady.park_api.web.dto.UsuarioCreateDto;
+import com.dev_dady.park_api.web.dto.UsuarioEditarSenha;
 import com.dev_dady.park_api.web.dto.UsuarioResponseDto;
 import com.dev_dady.park_api.web.dto.mapper.UsuarioMapper;
 import org.springframework.http.HttpStatus;
@@ -33,9 +34,9 @@ public class UsuarioController {
 
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<Usuario> editarSenha(@PathVariable Long id,@RequestBody Usuario usuario){
-        Usuario user = usuarioService.editarSenha(id,usuario.getPassword());
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Usuario> editarSenha(@PathVariable Long id,@RequestBody UsuarioEditarSenha dto){
+        Usuario user = usuarioService.editarSenha(id, dto.getSenhaAtual(),dto.getNovaSenha(),dto.getConfirmaSenha());
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     @GetMapping
     public ResponseEntity<List<Usuario>> findAll(){
