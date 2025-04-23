@@ -2,6 +2,9 @@ package com.dev_dady.park_api.web;
 
 import com.dev_dady.park_api.model.entity.Usuario;
 import com.dev_dady.park_api.service.UsuarioService;
+import com.dev_dady.park_api.web.dto.UsuarioCreateDto;
+import com.dev_dady.park_api.web.dto.UsuarioResponseDto;
+import com.dev_dady.park_api.web.dto.mapper.UsuarioMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +22,9 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
     @PostMapping
-    public ResponseEntity<Usuario> createUser(@RequestBody Usuario usuario){
-        Usuario user = usuarioService.createUser(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<UsuarioResponseDto> createUser(@RequestBody UsuarioCreateDto usuarioCreateDto){
+        Usuario user = usuarioService.createUser(UsuarioMapper.toUsuario(usuarioCreateDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UsuarioMapper.toDto(user));
     }
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id){
