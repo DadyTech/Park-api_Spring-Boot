@@ -39,8 +39,8 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     @GetMapping
-    public ResponseEntity<List<Usuario>> findAll(){
+    public ResponseEntity<List<UsuarioResponseDto>> findAll(){
         List<Usuario> usuarios = usuarioService.findAll();
-        return ResponseEntity.ok(usuarios);
+        return ResponseEntity.ok(UsuarioMapper.dtoTolist(usuarios));
     }
 }

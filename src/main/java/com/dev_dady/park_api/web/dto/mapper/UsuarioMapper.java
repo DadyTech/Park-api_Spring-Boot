@@ -6,6 +6,9 @@ import com.dev_dady.park_api.web.dto.UsuarioResponseDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class UsuarioMapper {
 
     public static Usuario toUsuario(UsuarioCreateDto usuarioCreateDto){
@@ -18,5 +21,9 @@ public class UsuarioMapper {
         TypeMap<Usuario,UsuarioResponseDto> propertyManpper = modelMapper.createTypeMap(Usuario.class,UsuarioResponseDto.class);
         propertyManpper.addMappings(mapper -> mapper.map(src->role,UsuarioResponseDto::setRole));
         return modelMapper.map(usuario,UsuarioResponseDto.class);
+    }
+
+    public static List<UsuarioResponseDto> dtoTolist(List<Usuario> usuarios){
+        return usuarios.stream().map(user -> toDto(user)).collect(Collectors.toList());
     }
 }
